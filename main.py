@@ -55,14 +55,18 @@ for filedocx in os.listdir(temp_dir_path):
     if filedocx.endswith('.docx'):
         docx_files.append(os.path.join(temp_dir_path, filedocx))
 
-merged_document = Document(docx_files.pop(0))
+merged_document = Document(docx_files[0])
 
 # Склеивание временных файлов в один итоговый
 for index, file in enumerate(docx_files):
     sub_doc = Document(file)
-
     for element in sub_doc.element.body:
         merged_document.element.body.append(element)
+
+    if index != 0:
+        sub_doc = Document(file)
+        for element in sub_doc.element.body:
+            merged_document.element.body.append(element)
 
 
 merged_document.save(output_file)
