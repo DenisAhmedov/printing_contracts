@@ -67,4 +67,4 @@ for index, file in enumerate(docx_files):
 
 merged_document.save(output_file)
 time.sleep(0.5)
-# os.startfile(output_file, 'print')
+os.startfile(output_file, 'print')
