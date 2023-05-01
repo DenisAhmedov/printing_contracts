@@ -49,7 +49,7 @@ for num in tqdm(range(start_num, end_num + 1)):
 
     temp_file = os.path.join(temp_dir_path, f'{num:04}.docx')
     doc.save(temp_file)
-    time.sleep(0.5)
+    time.sleep(0.1)
 
 for filedocx in os.listdir(temp_dir_path):
     if filedocx.endswith('.docx'):
