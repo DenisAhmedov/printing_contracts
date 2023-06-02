@@ -47,7 +47,7 @@ for num in tqdm(range(start_num, end_num + 1)):
     run.font.name = 'Arial'
     run.font.size = Pt(10)
 
-    temp_file = os.path.join(temp_dir_path, f'{num:04}.docx')
+    temp_file = os.path.join(temp_dir_path, f'{num:03}.docx')
     doc.save(temp_file)
     time.sleep(0.1)
 
