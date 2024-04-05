@@ -27,12 +27,14 @@ for files in os.listdir(temp_dir_path):
     except OSError:
         os.remove(temp_file)
 
-if (len(sys.argv) == 3) and (int(sys.argv[2]) >= int(sys.argv[1])):
+if (len(sys.argv) == 4) and (int(sys.argv[2]) >= int(sys.argv[1])):
     start_num = int(sys.argv[1])
     end_num = int(sys.argv[2])
+    prefix = int(sys.argv[3])
 else:
     start_num = int(input('Введите начальный номер договора: '))
     end_num = int(input('Введите конечный номер договора: '))
+    prefix = int(input('Введите префикс: '))
     if start_num > end_num:
         exit('Начальный номер не может быть больше конечного')
 
@@ -42,7 +44,7 @@ doc = Document(file)
 for num in tqdm(range(start_num, end_num + 1)):
     p = doc.paragraphs[0]
     p.text = ''
-    run = p.add_run(f'ДОГОВОР ОК-{num:03}-{year}')
+    run = p.add_run(f'ДОГОВОР {prefix}-{num:03}-{year}')
     run.font.bold = True
     run.font.name = 'Arial'
     run.font.size = Pt(10)
