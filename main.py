@@ -34,7 +34,7 @@ if (len(sys.argv) == 4) and (int(sys.argv[2]) >= int(sys.argv[1])):
 else:
     start_num = int(input('Введите начальный номер договора: '))
     end_num = int(input('Введите конечный номер договора: '))
-    prefix = int(input('Введите префикс: '))
+    prefix = input('Введите префикс: ')
     if start_num > end_num:
         exit('Начальный номер не может быть больше конечного')
 
