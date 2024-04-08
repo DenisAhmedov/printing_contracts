@@ -30,7 +30,7 @@ for files in os.listdir(temp_dir_path):
 if (len(sys.argv) == 4) and (int(sys.argv[2]) >= int(sys.argv[1])):
     start_num = int(sys.argv[1])
     end_num = int(sys.argv[2])
-    prefix = int(sys.argv[3])
+    prefix = sys.argv[3]
 else:
     start_num = int(input('Введите начальный номер договора: '))
     end_num = int(input('Введите конечный номер договора: '))
