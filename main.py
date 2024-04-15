@@ -48,7 +48,7 @@ for num in tqdm(range(start_num, end_num + 1)):
 
     for section in doc.sections:
         section.header.is_linked_to_previous = True
-        section.footer.is_linked_to_previous = True
+        # section.footer.is_linked_to_previous = True
 
 
     temp_file = os.path.join(temp_dir_path, f'{num:03}.docx')
