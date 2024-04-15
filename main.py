@@ -12,6 +12,7 @@ file = os.path.join(os.getcwd(), 'template.docx')
 temp_dir_path = os.path.join(os.getcwd(), 'temp')
 output_file = os.path.join(temp_dir_path, 'output.docx')
 year = datetime.strftime(datetime.now(), '%y')
+full_year = datetime.strftime(datetime.now(), '%Y')
 docx_files = []
 
 if not os.path.exists(file):
@@ -39,16 +40,15 @@ else:
     if start_num > end_num:
         exit('Начальный номер не может быть больше конечного')
 
-doc = Document(file)
 
 # Создание временных файлов
 for num in tqdm(range(start_num, end_num + 1)):
+    doc = Document(file)
     contract_number_string = f'{prefix}-{num:03}-{year}'
-    docx_replace(doc, contract_number = contract_number_string)
+    docx_replace(doc, contract_number = contract_number_string, year = full_year)
 
     for section in doc.sections:
         section.header.is_linked_to_previous = True
-        # section.footer.is_linked_to_previous = True
 
 
     temp_file = os.path.join(temp_dir_path, f'{num:03}.docx')
