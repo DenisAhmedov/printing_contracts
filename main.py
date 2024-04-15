@@ -1,5 +1,6 @@
 from docx import Document
 from docx.shared import Pt
+from python_docx_replace import docx_replace
 import os
 import sys
 import shutil
@@ -42,12 +43,13 @@ doc = Document(file)
 
 # Создание временных файлов
 for num in tqdm(range(start_num, end_num + 1)):
-    p = doc.paragraphs[0]
-    p.text = ''
-    run = p.add_run(f'ДОГОВОР {prefix}-{num:03}-{year}')
-    run.font.bold = True
-    run.font.name = 'Arial'
-    run.font.size = Pt(10)
+    contract_number_string = f'{prefix}-{num:03}-{year}'
+    docx_replace(doc, contract_number = contract_number_string)
+
+    for section in doc.sections:
+        section.header.is_linked_to_previous = True
+        section.footer.is_linked_to_previous = True
+
 
     temp_file = os.path.join(temp_dir_path, f'{num:03}.docx')
     doc.save(temp_file)
